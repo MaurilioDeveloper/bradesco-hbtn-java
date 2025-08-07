@@ -1,6 +1,6 @@
 package produtos;
 
-public abstract class Produto {
+public class Produto {
     private String titulo;
     private int ano;
     private String pais;
@@ -17,17 +17,11 @@ public abstract class Produto {
         return titulo;
     }
 
-    public int getAno() {
-        return ano;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
     public double getPreco() {
         return preco;
     }
 
-    public abstract String getTipo();
+    public String getTipo() {
+        return "Produto";
+    }
 }

@@ -12,18 +12,6 @@ public class Dvd extends Produto {
         this.duracao = duracao;
     }
 
-    public String getDiretor() {
-        return diretor;
-    }
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public int getDuracao() {
-        return duracao;
-    }
-
     @Override
     public String getTipo() {
         return "Dvd";

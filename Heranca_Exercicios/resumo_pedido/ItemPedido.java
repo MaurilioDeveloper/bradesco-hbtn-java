@@ -16,4 +16,8 @@ public class ItemPedido {
     public int getQuantidade() {
         return quantidade;
     }
+
+    public double getTotal() {
+        return produto.getPreco() * quantidade;
+    }
 }
