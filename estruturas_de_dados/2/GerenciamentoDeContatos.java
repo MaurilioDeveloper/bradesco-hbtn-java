@@ -2,6 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class GerenciamentoDeContatos {
@@ -25,10 +26,12 @@ public class GerenciamentoDeContatos {
         System.out.println("Contato " + nome + " adicionado com sucesso!");
     }
 
-    // Exibe todos os contatos (ordenados por nome ascendente)
+    // Exibe todos os contatos (ordenados por tamanho do nome e depois alfabeticamente)
     public void exibirContatos() {
         List<String> nomes = new ArrayList<>(contatos.keySet());
-        Collections.sort(nomes);
+        Collections.sort(nomes, Comparator
+            .comparingInt(String::length)
+            .thenComparing(String::compareTo));
         for (String nome : nomes) {
             System.out.println("Nome: " + nome);
             contatos.get(nome).exibirContato();
