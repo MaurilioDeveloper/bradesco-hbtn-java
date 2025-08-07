@@ -1,29 +1,29 @@
 import java.util.*;
 
 public class Blog {
-    private final List<Post> postagens;
+    private List<Post> post;
 
     public Blog() {
-        this.postagens = new ArrayList<>();
+        this.post = new ArrayList<>();
     }
 
     public void adicionarPostagem(Post postagem) {
-        postagens.add(postagem);
+        post.add(postagem);
     }
 
-    // Autores únicos e ordenados alfabeticamente
+    // Retorna autores únicos, ordenados
     public Set<String> obterTodosAutores() {
-        Set<String> autoresOrdenados = new TreeSet<>();
-        for (Post p : postagens) {
-            autoresOrdenados.add(p.getAutor());
+        Set<String> autores = new TreeSet<>();
+        for (Post p : post) {
+            autores.add(p.getAutor());
         }
-        return autoresOrdenados;
+        return autores;
     }
 
-    // Contagem por categoria com chaves ordenadas alfabeticamente
+    // Retorna contagem por categoria, ordenada por nome da categoria
     public Map<String, Integer> obterContagemPorCategoria() {
         Map<String, Integer> contagem = new TreeMap<>();
-        for (Post p : postagens) {
+        for (Post p : post) {
             contagem.put(p.getCategoria(), contagem.getOrDefault(p.getCategoria(), 0) + 1);
         }
         return contagem;
