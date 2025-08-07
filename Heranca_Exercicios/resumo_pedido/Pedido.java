@@ -1,4 +1,6 @@
-import java.util.Locale;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import produtos.Produto;
 
 public class Pedido {
     private double descontoPercentual;
@@ -10,44 +12,40 @@ public class Pedido {
     }
 
     public void apresentarResumoPedido() {
-        Locale.setDefault(new Locale("pt", "BR"));
         System.out.println("------- RESUMO PEDIDO -------");
 
-        double totalProdutos = 0.0;
+        BigDecimal totalProdutos = BigDecimal.ZERO;
 
         for (ItemPedido item : itens) {
-            produtos.Produto produto = item.getProduto();
+            Produto produto = item.getProduto();
             String tipo = produto.getTipo();
             String titulo = produto.getTitulo();
 
-            // Aplica acréscimo de 15%
-            double precoComAcrescimo = produto.getPreco() * 1.15;
-            precoComAcrescimo = Math.round(precoComAcrescimo * 100.0) / 100.0;
+            BigDecimal precoOriginal = BigDecimal.valueOf(produto.getPreco());
+            BigDecimal precoComAcrescimo = precoOriginal.multiply(BigDecimal.valueOf(1.15));
+            precoComAcrescimo = precoComAcrescimo.setScale(2, RoundingMode.HALF_UP);
 
             int quantidade = item.getQuantidade();
-            double totalItem = precoComAcrescimo * quantidade;
+            BigDecimal totalItem = precoComAcrescimo.multiply(BigDecimal.valueOf(quantidade));
 
-            totalProdutos += totalItem;
+            totalProdutos = totalProdutos.add(totalItem);
 
-            System.out.printf(Locale.forLanguageTag("pt-BR"),
-                "Tipo: %s  Titulo: %s  Preco: %.2f  Quant: %d  Total: %.2f%n",
-                tipo, titulo, precoComAcrescimo, quantidade, totalItem);
+            System.out.printf("Tipo: %s  Titulo: %s  Preco: %.2f  Quant: %d  Total: %.2f%n",
+                    tipo, titulo, precoComAcrescimo.doubleValue(), quantidade, totalItem.doubleValue());
         }
 
-        // Calcula desconto e arredonda
-        double desconto = totalProdutos * (descontoPercentual / 100.0);
-        desconto = Math.round(desconto * 100.0) / 100.0;
+        BigDecimal desconto = totalProdutos.multiply(BigDecimal.valueOf(descontoPercentual / 100.0));
+        desconto = desconto.setScale(2, RoundingMode.HALF_UP);
 
-        totalProdutos = Math.round(totalProdutos * 100.0) / 100.0;
+        totalProdutos = totalProdutos.setScale(2, RoundingMode.HALF_UP);
 
-        double totalFinal = totalProdutos - desconto;
-        totalFinal = Math.round(totalFinal * 100.0) / 100.0;
+        BigDecimal totalFinal = totalProdutos.subtract(desconto).setScale(2, RoundingMode.HALF_UP);
 
         System.out.println("----------------------------");
-        System.out.printf(Locale.forLanguageTag("pt-BR"), "DESCONTO: %.2f%n", desconto);
-        System.out.printf(Locale.forLanguageTag("pt-BR"), "TOTAL PRODUTOS: %.2f%n", totalProdutos);
+        System.out.printf("DESCONTO: %.2f%n", desconto.doubleValue());
+        System.out.printf("TOTAL PRODUTOS: %.2f%n", totalProdutos.doubleValue());
         System.out.println("----------------------------");
-        System.out.printf(Locale.forLanguageTag("pt-BR"), "TOTAL PEDIDO: %.2f%n", totalFinal);
+        System.out.printf("TOTAL PEDIDO: %.2f%n", totalFinal.doubleValue());
         System.out.println("----------------------------");
     }
 }

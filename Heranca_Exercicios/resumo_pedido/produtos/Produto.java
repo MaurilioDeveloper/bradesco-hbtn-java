@@ -1,20 +1,28 @@
 package produtos;
 
 public abstract class Produto {
-    protected String titulo;
-    protected int anoLancamento;
-    protected String paisOrigem;
-    protected double preco;
+    private String titulo;
+    private int ano;
+    private String pais;
+    private double preco;
 
-    public Produto(String titulo, int anoLancamento, String paisOrigem, double preco) {
+    public Produto(String titulo, int ano, String pais, double preco) {
         this.titulo = titulo;
-        this.anoLancamento = anoLancamento;
-        this.paisOrigem = paisOrigem;
+        this.ano = ano;
+        this.pais = pais;
         this.preco = preco;
     }
 
     public String getTitulo() {
         return titulo;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public String getPais() {
+        return pais;
     }
 
     public double getPreco() {
