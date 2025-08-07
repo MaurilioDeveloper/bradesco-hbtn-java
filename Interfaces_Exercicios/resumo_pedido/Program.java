@@ -11,17 +11,14 @@ public class Program {
 
         ProcessadorPedido processadorPedidoSedex = new ProcessadorPedido(new Sedex());
         processadorPedidoSedex.processar(pedido1);
-
         System.out.printf("%s - %.2f\n", pedido1.getFrete().getTipoProvedorFrete(), pedido1.getFrete().getValor());
 
         ProcessadorPedido processadorPedidoJadLog = new ProcessadorPedido(new JadLog());
-        processadorPedidoJadLog.processar(pedido1);        
-
+        processadorPedidoJadLog.processar(pedido1);
         System.out.printf("%s - %.2f\n", pedido1.getFrete().getTipoProvedorFrete(), pedido1.getFrete().getValor());
 
         ProcessadorPedido processadorPedidoLoggi = new ProcessadorPedido(new Loggi());
         processadorPedidoLoggi.processar(pedido1);
-
         System.out.printf("%s - %.2f\n", pedido1.getFrete().getTipoProvedorFrete(), pedido1.getFrete().getValor());
 
         System.out.println("-----");
@@ -29,32 +26,32 @@ public class Program {
         processadorPedidoSedex.processar(pedido2);
         System.out.printf("%s - %.2f\n", pedido2.getFrete().getTipoProvedorFrete(), pedido2.getFrete().getValor());
 
-        processadorPedidoJadLog.processar(pedido2);        
+        processadorPedidoJadLog.processar(pedido2);
         System.out.printf("%s - %.2f\n", pedido2.getFrete().getTipoProvedorFrete(), pedido2.getFrete().getValor());
 
         processadorPedidoLoggi.processar(pedido2);
         System.out.printf("%s - %.2f\n", pedido2.getFrete().getTipoProvedorFrete(), pedido2.getFrete().getValor());
 
-        System.out.println("-----");  
+        System.out.println("-----");
 
         processadorPedidoSedex.processar(pedido3);
         System.out.printf("%s - %.2f\n", pedido3.getFrete().getTipoProvedorFrete(), pedido3.getFrete().getValor());
 
-        processadorPedidoJadLog.processar(pedido3);        
+        processadorPedidoJadLog.processar(pedido3);
         System.out.printf("%s - %.2f\n", pedido3.getFrete().getTipoProvedorFrete(), pedido3.getFrete().getValor());
 
         processadorPedidoLoggi.processar(pedido3);
         System.out.printf("%s - %.2f\n", pedido3.getFrete().getTipoProvedorFrete(), pedido3.getFrete().getValor());
 
-        System.out.println("-----");       
+        System.out.println("-----");
 
         processadorPedidoSedex.processar(pedido4);
         System.out.printf("%s - %.2f\n", pedido4.getFrete().getTipoProvedorFrete(), pedido4.getFrete().getValor());
 
-        processadorPedidoJadLog.processar(pedido4);        
+        processadorPedidoJadLog.processar(pedido4);
         System.out.printf("%s - %.2f\n", pedido4.getFrete().getTipoProvedorFrete(), pedido4.getFrete().getValor());
 
         processadorPedidoLoggi.processar(pedido4);
-        System.out.printf("%s - %.2f\n", pedido4.getFrete().getTipoProvedorFrete(), pedido4.getFrete().getValor());        
+        System.out.printf("%s - %.2f\n", pedido4.getFrete().getTipoProvedorFrete(), pedido4.getFrete().getValor());
     }
 }
