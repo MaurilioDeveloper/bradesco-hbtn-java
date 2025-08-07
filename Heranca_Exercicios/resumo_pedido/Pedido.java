@@ -1,40 +1,53 @@
-import java.text.DecimalFormat;
-
 public class Pedido {
-    private int percentualDesconto;
+    private double percentualDesconto;
     private ItemPedido[] itens;
 
-    public Pedido(int percentualDesconto, ItemPedido[] itens) {
+    public Pedido(double percentualDesconto, ItemPedido[] itens) {
         this.percentualDesconto = percentualDesconto;
         this.itens = itens;
     }
 
+    public double getPercentualDesconto() {
+        return percentualDesconto;
+    }
+
+    public ItemPedido[] getItens() {
+        return itens;
+    }
+
+    public double calcularTotal() {
+        double total = 0.0;
+        for (ItemPedido item : itens) {
+            total += item.getQuantidade() * item.getProduto().obterPrecoLiquido();
+        }
+        return total * (1.0 - (percentualDesconto / 100.0));
+    }
+
     public void apresentarResumoPedido() {
-        DecimalFormat df = new DecimalFormat("0.00");
+        double totalProdutos = 0.0;
 
         System.out.println("------- RESUMO PEDIDO -------");
-        double totalProdutos = 0;
 
         for (ItemPedido item : itens) {
-            String tipo = item.getProduto().getTipo();
-            String titulo = item.getProduto().getTitulo();
-            double preco = item.getProduto().getPreco();
-            int quantidade = item.getQuantidade();
-            double totalItem = item.getTotal();
+            produtos.Produto p = item.getProduto();
+            double precoUnit = p.obterPrecoLiquido();
+            double totalItem = precoUnit * item.getQuantidade();
             totalProdutos += totalItem;
 
+            String tipo = (p instanceof produtos.Livro) ? "Livro" : "Dvd";
+
             System.out.printf("Tipo: %s  Titulo: %s  Preco: %.2f  Quant: %d  Total: %.2f\n",
-                tipo, titulo, preco, quantidade, totalItem);
+                    tipo, p.getTitulo(), precoUnit, item.getQuantidade(), totalItem);
         }
 
         System.out.println("----------------------------");
-        double desconto = totalProdutos * percentualDesconto / 100.0;
-        double totalPedido = totalProdutos - desconto;
 
-        System.out.printf("DESCONTO: %.2f\n", desconto);
+        double descontoValor = totalProdutos * (percentualDesconto / 100.0);
+
+        System.out.printf("DESCONTO: %.2f\n", descontoValor);
         System.out.printf("TOTAL PRODUTOS: %.2f\n", totalProdutos);
         System.out.println("----------------------------");
-        System.out.printf("TOTAL PEDIDO: %.2f\n", totalPedido);
+        System.out.printf("TOTAL PEDIDO: %.2f\n", totalProdutos - descontoValor);
         System.out.println("----------------------------");
     }
 }

@@ -1,23 +1,17 @@
-import produtos.Produto;
-
 public class ItemPedido {
-    private Produto produto;
+    private produtos.Produto produto;
     private int quantidade;
 
-    public ItemPedido(Produto produto, int quantidade) {
+    public ItemPedido(produtos.Produto produto, int quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
     }
 
-    public Produto getProduto() {
+    public produtos.Produto getProduto() {
         return produto;
     }
 
     public int getQuantidade() {
         return quantidade;
-    }
-
-    public double getTotal() {
-        return produto.getPreco() * quantidade;
     }
 }

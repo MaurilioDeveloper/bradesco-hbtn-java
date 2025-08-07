@@ -1,27 +1,33 @@
 package produtos;
 
-public class Produto {
+public abstract class Produto {
     private String titulo;
     private int ano;
     private String pais;
-    private double preco;
+    private double precoBruto;
 
-    public Produto(String titulo, int ano, String pais, double preco) {
+    public Produto(String titulo, int ano, String pais, double precoBruto) {
         this.titulo = titulo;
         this.ano = ano;
         this.pais = pais;
-        this.preco = preco;
+        this.precoBruto = precoBruto;
     }
 
     public String getTitulo() {
         return titulo;
     }
 
-    public double getPreco() {
-        return preco;
+    public int getAno() {
+        return ano;
     }
 
-    public String getTipo() {
-        return "Produto";
+    public String getPais() {
+        return pais;
     }
+
+    public double getPrecoBruto() {
+        return precoBruto;
+    }
+
+    public abstract double obterPrecoLiquido();
 }
