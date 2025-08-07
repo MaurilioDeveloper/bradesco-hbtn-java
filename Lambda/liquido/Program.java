@@ -2,7 +2,8 @@ import java.util.Locale;
 
 public class Program {
     public static void main(String[] args) {
-        Locale.setDefault(new Locale("pt", "BR"));
+        // Garante ponto como separador
+        Locale.setDefault(Locale.US);
 
         Funcionario funcionario1 = new Funcionario(2360);
 
