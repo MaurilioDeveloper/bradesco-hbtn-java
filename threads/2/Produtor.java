@@ -18,7 +18,7 @@ public class Produtor extends Thread {
                 Thread.sleep(1000); // produz a cada 1s
             }
         } catch (InterruptedException e) {
-            interrupt(); // restaura flag e encerra
+            interrupt(); // encerra educadamente
         }
     }
 }

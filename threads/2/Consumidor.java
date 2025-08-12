@@ -15,7 +15,7 @@ public class Consumidor extends Thread {
                 Thread.sleep(500);
             }
         } catch (InterruptedException e) {
-            interrupt(); // restaura flag e encerra
+            interrupt(); // encerra educadamente
         }
     }
 }

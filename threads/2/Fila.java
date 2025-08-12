@@ -15,7 +15,7 @@ public class Fila {
         fila.addLast(item);
         System.out.println(Thread.currentThread().getName()
                 + " produziu: " + item + " (tam=" + fila.size() + ")");
-        notifyAll(); // acorda consumidores (ou produtores bloqueados indevidamente)
+        notifyAll(); // acorda consumidores e/ou produtores bloqueados
     }
 
     public synchronized int retirar() throws InterruptedException {
@@ -25,7 +25,7 @@ public class Fila {
         int item = fila.removeFirst();
         System.out.println(Thread.currentThread().getName()
                 + " consumiu: " + item + " (tam=" + fila.size() + ")");
-        notifyAll(); // acorda produtores (ou consumidores bloqueados indevidamente)
+        notifyAll(); // acorda produtores e/ou consumidores
         return item;
     }
 }

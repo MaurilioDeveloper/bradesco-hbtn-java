@@ -14,7 +14,7 @@ public class SistemaFilas {
 
         try {
             // roda o sistema por 20 segundos
-            Thread.sleep(20_000);
+            Thread.sleep(20000);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         } finally {
